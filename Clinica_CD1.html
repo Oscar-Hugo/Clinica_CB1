@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Médica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://github.com/Per-Arredondo/Clinica_medica/blob/main/Fondo%20JPG.jpeg?raw=true');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+    }
+    header, section, footer {
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 16px;
+      max-width: 900px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header img {
+      max-width: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+    .portada {
+      width: 100%;
+      border-radius: 16px;
+      margin-top: 10px;
+    }
+    h2 {
+      color: #2a7f62;
+    }
+    .accordion button {
+      width: 100%;
+      background: #e3f1ec;
+      color: #2a7f62;
+      padding: 15px;
+      margin-top: 10px;
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .accordion-content {
+      display: none;
+      padding: 10px;
+      background: #f6fffa;
+      border-left: 4px solid #2a7f62;
+      margin-bottom: 10px;
+      border-radius: 0 0 12px 12px;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background-color: #2a7f62;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #mensajeConfirmacion {
+      margin-top: 10px;
+      background: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://github.com/Per-Arredondo/Clinica_medica/blob/main/logo%20ejemplo.png?raw=true" alt="Logo Clínica">
+    <img src="https://github.com/Per-Arredondo/Clinica_medica/blob/main/ChatGPT%20Image%202%20abr%202025,%2016_04_57.png?raw=true" alt="Portada Clínica" class="portada">
+  </header>
+
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una clínica médica comprometida con la salud de nuestra comunidad. Brindamos atención profesional con enfoque humano, centrado en el bienestar integral de nuestros pacientes.</p>
+
+    <h2>Misión</h2>
+    <p>Brindar atención médica integral, accesible y de calidad.</p>
+
+    <h2>Visión</h2>
+    <p>Ser una clínica referente por excelencia, trato humano y compromiso con la salud preventiva.</p>
+
+    <h2>Valores</h2>
+    <ul>
+      <li>Ética profesional</li>
+      <li>Empatía</li>
+      <li>Diversidad</li>
+      <li>Honestidad</li>
+      <li>Responsabilidad</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Especialidades Médicas</h2>
+    <div class="accordion">
+      <button onclick="toggleContent(this)">Medicina General</button>
+      <div class="accordion-content">Atención primaria para todas las edades, diagnósticos y seguimiento.</div>
+      <button onclick="toggleContent(this)">Ginecología</button>
+      <div class="accordion-content">Salud femenina, control prenatal, planificación familiar.</div>
+      <button onclick="toggleContent(this)">Urología</button>
+      <div class="accordion-content">Diagnóstico y tratamiento de enfermedades del aparato urinario y reproductor masculino.</div>
+      <button onclick="toggleContent(this)">Pediatría</button>
+      <div class="accordion-content">Cuidados médicos especializados para niñas y niños.</div>
+      <button onclick="toggleContent(this)">Cardiología</button>
+      <div class="accordion-content">Prevención, diagnóstico y tratamiento de enfermedades del corazón.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agenda tu cita</h2>
+    <form id="formCita">
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+      <input type="tel" name="telefono" placeholder="Teléfono a 10 dígitos" pattern="\\d{10}" required>
+      <input type="email" name="correo" placeholder="Correo electrónico" required>
+      <select name="sexo" required>
+        <option value="">Selecciona tu sexo</option>
+        <option>Femenino</option>
+        <option>Masculino</option>
+        <option>Otro</option>
+      </select>
+      <select name="especialidad" required>
+        <option value="">Selecciona una especialidad</option>
+        <option>Medicina General</option>
+        <option>Ginecología</option>
+        <option>Urología</option>
+        <option>Pediatría</option>
+        <option>Cardiología</option>
+      </select>
+      <input type="date" name="fecha" required>
+      <input type="time" name="hora" required>
+      <textarea name="comentarios" placeholder="Comentarios adicionales"></textarea>
+      <button type="submit">Agendar cita</button>
+      <div id="mensajeConfirmacion"></div>
+    </form>
+  </section>
+
+  <footer>
+    <p style="text-align:center">&copy; 2025 Clínica Médica - Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleContent(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const form = document.getElementById('formCita');
+    const mensaje = document.getElementById('mensajeConfirmacion');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const datos = new FormData(form);
+      const jsonData = {};
+      datos.forEach((value, key) => jsonData[key] = value);
+
+      fetch('https://script.google.com/macros/s/AKfycbwqkIOnrvtAlrmEtrGKkGku2HvRWF5fkBIkEIxtMuOcVLEMJiTs28IfXWPCAhge6m1Kow/exec', {
+        method: 'POST',
+        body: JSON.stringify(jsonData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.text())
+      .then(() => {
+        mensaje.innerHTML = '✅ Gracias, tu cita ha sido agendada.<br>⏳ Redirigiendo al inicio...<br>🎉 Te contactaremos pronto.';
+        mensaje.style.display = 'block';
+        form.reset();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => mensaje.style.display = 'none', 5000);
+      })
+      .catch(err => {
+        mensaje.innerHTML = '❌ Error al agendar cita. Intenta nuevamente.';
+        mensaje.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>
